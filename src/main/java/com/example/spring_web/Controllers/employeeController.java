@@ -9,12 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/employees")
-@AllArgsConstructor
 public class employeeController {
 
     private final employeeRepo employeeRepo;
 
-    public employeeController(com.example.spring_web.Repositories.employeeRepo employeeRepo) {
+    public employeeController(employeeRepo employeeRepo) {
         this.employeeRepo = employeeRepo;
     }
 
