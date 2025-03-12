@@ -1,16 +1,35 @@
 package com.example.spring_web.Controllers;
 
+import com.example.spring_web.Repositories.employeeRepo;
+import com.example.spring_web.entities.employeesEntity;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/employees")
+@AllArgsConstructor
 public class employeeController {
-//    @GetMapping
-//    public String welcome() {
-//        return "Hello from EmployeeController!";
-//    }
+
+    private final employeeRepo employeeRepo;
+
+    public employeeController(com.example.spring_web.Repositories.employeeRepo employeeRepo) {
+        this.employeeRepo = employeeRepo;
+    }
+
     @GetMapping
-    public String getEmployees(@RequestParam String name) {
-        return "Hello "+ name;
+    public String getEmployees() {
+        return "Hello";
+    }
+
+    @GetMapping(path = "/show")
+    public List<employeesEntity> getAllEmployees() {
+        return employeeRepo.findAll();
+    }
+
+    @PostMapping
+    public employeesEntity addEmployee(@RequestBody employeesEntity inputEmployee) {
+        return employeeRepo.save(inputEmployee);
     }
 }
