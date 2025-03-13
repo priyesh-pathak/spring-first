@@ -1,8 +1,9 @@
 package com.example.spring_web.dto;
-
+import jakarta.validation.constraints.NotNull;
 
 public class EmployeesDTO {
     private Long id;
+    @NotNull
     private String name;
     private String department;
 
